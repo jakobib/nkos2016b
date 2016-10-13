@@ -53,12 +53,21 @@ multifilter:
 @Zeng2015: Networked Knowledge Organization Systems Dublin Core Application Profile (NKOS AP) v0.2
 
 * BARTOC is aligned with NKOS AP
-* Some fields not applicable
-* RDF is not strict enough (literal vs. resource, repeatability...)
 
--> BARTOC RDF $\subset$ NKOS AP RDF $\cup$ schema.org
+* Some NKOS AP fields are not included or applicable [yet?]
 
-# BARTOC KOS metadata in RDF
+* Additional constraints make sense
+
+<!--
+    * prefer links to controlled vocabularies over literals
+    * include language tags (e.g. English title)
+    * repeatable vs. non-repeatable fields
+    * ...
+-->
+
+--> BARTOC RDF $\subset$ ( NKOS AP $\cup$ Schema.org $\cup$ FOAF )
+
+# BARTOC KOS Metadata in RDF
 
 \tiny
 
@@ -95,7 +104,7 @@ multifilter:
     ...
 ~~~
 
-# BARTOC KOS metadata in RDF
+# BARTOC KOS Metadata in RDF
 
 \tiny
 
@@ -144,34 +153,83 @@ manual input -> BARTOC database fields (Drupal)
 
 Conversions don't preserve all information (<=>) but normalize
 
-See @Ledl2016 for conversion details (extended since)
+See @Ledl2016 for conversion details
 
 # JSKOS
 
-...JSKOS defines a data format based on RDF and JSON to express structure, metadata, mappings and other information about KOS in a uniform way. JSKOS also makes use of SKOS and JSON-LD...
+* based on RDF (SKOS and DC Terms)
 
-# JSKOS
+    * additional constraints for better normalization
 
-..second slide: JSKOS example...
+    * support of mappings, concordances, and registries\
+      in addition to concept schemes and concepts
 
-# JSKOS Wrapper
+* based on JSON-LD
 
-* JSKOS API
-* See jskos-php-examples (live demo and source code)
+    *  simplified and extended with closed world statements
+
+Primary use case: **simple use in web applications**
+
+Specified at <https://gbv.github.io/jskos/>
+
+# BARTOC KOS Metadata in JSKOS
+
+\tiny
+
+~~~
+{
+  "uri": "http://bartoc.org/en/node/20",
+  "type": [
+	"http://www.w3.org/2004/02/skos/core#ConceptScheme",
+	"http://w3id.org/nkos/nkostype#thesaurus"
+  ],
+  "prefLabel": { 
+    "en": "Inter-Active Terminology for Europe" 
+  },
+  "notation": [ "IATE" ],
+  "created": "1999",
+  "creator": [ {
+    "uri": "http://viaf.org/viaf/167896131",
+    "prefLabel": { "en": "Translation Centre for the Bodies of the European Union" }
+  } ],
+  "extent": "8.4 million terms, including approximately 540 000 abbreviations and 130 000 phrases (2016-06)",
+  "identifier": [ "http://www.wikidata.org/entity/Q1520860" ],
+  "url": "http://iate.europa.eu",
+  "languages": [ "en", "fr", "de", "es", null ] # null: explicit existence
+  "subject": [ {
+	  "uri": "http://eurovoc.europa.eu/4060",
+	  "prefLabel": { "en": "European Union" },
+    },{
+	  "uri": "http://dewey.info/class/001/e23/"
+	  "notation": [ "001" ],
+	  "prefLabel": { "en": "Knowledge" }
+	},
+	null # null: explicit existence
+  ]
+}
+~~~
+
+# JSKOS-API Wrapper
+
+* Implementation and demo: <https://github.com/gbv/jskos-php-examples>
+* Straightfoward mapping from RDF to SKOS
+* API specified at <https://gbv.github.io/elma/>
+
+![](via-jskos.png){height=32mm}
 
 # Daily BARTOC Dumps in JSKOS
 
 ![](bartoc-dumps.png){width=110mm}
 
-
 # Summary
 
-* \> 1.900 KOS (and 70 KOS registries) described in BARTOC
-* Controlled vocabularies:
-	* EuroVoc, DDC, ISO 639-2, Wikidata, NKOS KOS Types Vocabulary, ILC...
-* RDF Metadata Schema: NKOS AP + schema.org
-* JSKOS format (via wrapper): SKOS + extensions
-* Available as Open Data
+* \> 1.900 KOSs (and 70 KOS registries) in BARTOC
+* RDF Metadata Schema: NKOS AP & schema.org & FOAF
+* Controlled vocabularies: EuroVoc, DDC, Wikidata\
+  ISO 639-2 languages, NKOS KOS Types, ILC...
+* JSKOS format: SKOS & JSON-LD & constraints/extensions
+* BARTOC dumps available as Open Data
+* Contributions are welcome!
 
 # References
 

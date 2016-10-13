@@ -1,0 +1,25 @@
+digraph {
+    graph[rankdir=LR]
+    node[shape=plaintext]
+    edge[color="#3161a3"]
+
+    format -> JSKOS
+    format2 -> JSKOS
+    format3 -> JSKOS
+    format2[label="format"]
+    format3[label="format"]
+
+    JSKOS -> JSKOSAPI [dir=both arrowtail=none arrowhead=none]
+    Service -> JSKOSAPI
+    Service2 -> JSKOSAPI
+    Service2 [label="Service"]
+
+    JSKOSAPI [label="JSKOS-API" shape=ellipse color="#3161a3"]
+    JSKOS [shape=ellipse color="#3161a3"]
+
+    JSKOSAPI -> application
+    JSKOSAPI -> application2
+    JSKOSAPI -> application3
+    application2 [label="application"]
+    application3 [label="application"]
+}
