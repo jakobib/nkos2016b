@@ -11,7 +11,7 @@ author:
    affiliation: UB Basel
 #institute: Verbundzentrale des GBV (VZG), Göttingen, Germany
 date: 2016-10-16
-#subtitle: '[10.5281/zenodo.61767](http://dx.doi.org/10.5281/zenodo.61767)'
+subtitle: '[10.5281/zenodo.160926](https://doi.org/10.5281/zenodo.160926)'
 place: 16^th^ European NKOS Workshop, Copenhagen
 multifilter:
  - arrows
